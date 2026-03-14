@@ -1,2 +1,27 @@
-# tests
+# Python
+__pycache__/
+*.so
+.Python
+env/
+venv/
+.env
+*.egg-info/
+dist/
+build/
+
+# Результаты и тесты
 *.cpp
+tests/
+
+# Временные файлы
+*.tmp
+*.temp
+*.log
+*.bak
+*.swp
+*.swo
+*~
+
+# Локальная конфигурация
+*.local
+config.local.py
