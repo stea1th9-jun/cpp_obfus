@@ -41,3 +41,8 @@ obfuscate('main.cpp', 'obfuscated_main.cpp)
 pip install clang
 ```
 
+### Установка пути
+Если путь libclang.cpp не повпадает с C:\Program Files\LLVM\bin\libclang.dll, нужно исправить путь в строке:
+```python3
+clang.cindex.Config.set_library_file("C:/Program Files/LLVM/bin/libclang.dll")
+```
