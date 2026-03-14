@@ -158,7 +158,9 @@ def _to_process_errors(operation_res: list) -> None:
 
 
 def _get_declarations_from_node(
-        node, file_name: str, func_args: dict, func_args_temp: dict
+        node, file_name: str, 
+        func_args: dict, 
+        func_args_temp: dict
 ) -> tuple:
     """
     Рекурсивно собирает все объявления из узла AST
@@ -276,7 +278,9 @@ def _filter_variables(all_vars: set, code: str) -> set:
     return final_vars
 
 def _filter_functions(
-        all_funcs: list, func_args_temp: dict, code: str
+        all_funcs: list, 
+        func_args_temp: dict, 
+        code: str
 ) -> list:
     """
     Фильтрует функции по их фактическому использованию в коде
@@ -327,7 +331,9 @@ def _filter_classes(all_classes: set, final_funcs: list) -> set:
     return final_classes
 
 def _add_to_reserved(
-        final_vars: set, final_funcs: list, final_classes: set
+        final_vars: set, 
+        final_funcs: list, 
+        final_classes: set
 ) -> None:
     """
     Добавляет отфильтрованные идентификаторы в список зарезервированных имен
@@ -547,7 +553,7 @@ def generate_new_name(length: int) -> tuple:
     except Exception:
         return '', errors[5]
 
-def rename_ids(code: str, identifiers: list, length: int = 40) -> tuple:
+def rename_ids(code: str, identifiers: list, length: int) -> tuple:
     """
     Переименовывает идентификаторы на сгенерированные имена заданной длины
     Args:
@@ -677,13 +683,18 @@ def func_overloading(code: str, functions_to_skip: list) -> tuple:
         return code, errors[7]
 
 # главная функция
-def obfuscate(file_name: str, new_file_name: str = 'obfuscated.cpp') -> str:
+def obfuscate(
+        file_name: str, 
+        new_file_name: str = 'obfuscated.cpp', 
+        new_names_length: int = 40
+) -> str:
     """
     Удаляет комментарии и пустое пространство из C++ кода, перегружает функции
     и заменяет имена переменных и функций на произвольные
     Args:
         file_name (имя файла из которого будет прочитан код),
-        file_name (имя файла в который будет записан результат)
+        file_name (имя файла в который будет записан результат),
+        new_names_length (длина новых имен переменных и функций)
     Return:
         obf_code (обфусцированный C++ код)
     """
@@ -704,15 +715,14 @@ def obfuscate(file_name: str, new_file_name: str = 'obfuscated.cpp') -> str:
     # Защищаем строковые литералы и директивы препроцессора
     obf_code = re.sub(INCLUDE_PATTERN, _protect_includes, code)
     obf_code = re.sub(STRING_PATTERN, _protect_strings, obf_code)
-    print(protected_includes)
     # Удаляем комментарии
     obf_code, operation_res[1] = del_comments(obf_code)
     # Перегружаем функции
     obf_code, operation_res[2] = func_overloading(obf_code, functions_to_skip)
     # Переименовываем переменные
-    obf_code, operation_res[3] = rename_ids(obf_code, all_variables)
+    obf_code, operation_res[3] = rename_ids(obf_code, all_variables, new_names_length)
     # Переименовываем функции
-    obf_code, operation_res[4] = rename_ids(obf_code, all_functions)
+    obf_code, operation_res[4] = rename_ids(obf_code, all_functions, new_names_length)
     # Удаляем пустое пространство
     obf_code, operation_res[5] = del_free_space(obf_code)
     # Восстанавливаем директивы препроцессора и строковые литералы
