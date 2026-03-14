@@ -46,6 +46,10 @@ clang.cindex.Config.set_library_file("C:/Program Files/LLVM/bin/libclang.dll")
 ```
 ## Лицензия
 
-Этот проект распространяется под лицензией MIT. Подробности в файле [LICENSE](LICENSE).
+Copyright © 2024 [Ваше имя]
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+Этот проект распространяется под лицензией **GNU General Public License v3.0**.
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
+Подробности в файле [LICENSE](LICENSE).
