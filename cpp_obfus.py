@@ -163,7 +163,6 @@ def _get_declarations_from_node(
                             for i in PUNCT)):
                     functions.append(node.spelling)
 
-                    # ========== ПОДСЧЕТ АРГУМЕНТОВ ==========
                     # Считаем количество параметров функции
                     param_count = 0
                     for child in node.get_children():
@@ -182,7 +181,6 @@ def _get_declarations_from_node(
                         if param_count not in func_args_temp:
                             func_args_temp[param_count] = []
                         func_args_temp[param_count].append(node.spelling)
-                    # ======================================
 
     # Рекурсивно обходим дочерние узлы
     for child in node.get_children():
