@@ -46,7 +46,7 @@ clang.cindex.Config.set_library_file("C:/Program Files/LLVM/bin/libclang.dll")
 ```
 ## Лицензия
 
-Copyright © 2024 [Баранов Данииил Васильевич]
+Copyright © 2026 Баранов Данииил Васильевич
 
 Этот проект распространяется под лицензией **GNU General Public License v3.0**.
 
