@@ -44,3 +44,8 @@ pip install clang
 ```python3
 clang.cindex.Config.set_library_file("C:/Program Files/LLVM/bin/libclang.dll")
 ```
+## Лицензия
+
+Этот проект распространяется под лицензией MIT. Подробности в файле [LICENSE](LICENSE).
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
